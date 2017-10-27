@@ -1,6 +1,5 @@
 ﻿using ITWEB_Mandatory5.Models;
 using Microsoft.EntityFrameworkCore;
-using ITWEB_Mandatory5.Models;
 
 namespace ITWEB_Mandatory5.DAL
 {
