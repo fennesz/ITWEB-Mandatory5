@@ -1,12 +1,14 @@
-namespace ITWEB_Mandatory5.Component
+using ITWEB_Mandatory5.DAL;
+using System.Collections.Generic;
+
+namespace ITWEB_Mandatory5.Models
 {
-    public class Category
+    public class Category : BaseEntity
     {
         public Category()
         {
-            ComponentTypes = newList<ComponentType>();
+            ComponentTypes = new List<ComponentType>();
         }
-        public int CategoryId { get; set; }
         public string Name { get; set; }
         public ICollection<ComponentType> ComponentTypes { get; protected set; }
     }

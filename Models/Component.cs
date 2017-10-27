@@ -1,13 +1,13 @@
-﻿using System;
+﻿using ITWEB_Mandatory5.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ITWEB_Mandatory5.Models
 {
-    public class Component
+    public class Component : BaseEntity
     {
-        public long ComponentId { get; set; }
         public long ComponentTypeId { get; set; }
         public int ComponentNumber { get; set; }
         public string SerialNo { get; set; }

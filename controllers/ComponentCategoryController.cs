@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
-namespace ITWEB_Mandatory5.Component
+namespace ITWEB_Mandatory5.Web
 {
     public class ComponentCategoryController : Controller
     {
