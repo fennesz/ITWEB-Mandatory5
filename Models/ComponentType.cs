@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using ITWEB_Mandatory5.Models;
+
 public class ComponentType
 {
     public ComponentType()

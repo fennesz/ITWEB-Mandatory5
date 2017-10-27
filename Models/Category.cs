@@ -1,10 +1,12 @@
-namespace ITWEB_Mandatory5.Component
+using System.Collections.Generic;
+
+namespace ITWEB_Mandatory5.Models
 {
     public class Category
     {
         public Category()
         {
-            ComponentTypes = newList<ComponentType>();
+            ComponentTypes = new List<ComponentType>();
         }
         public int CategoryId { get; set; }
         public string Name { get; set; }
