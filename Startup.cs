@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using ITWEB_Mandatory5.DAL;
 using ITWEB_Mandatory5.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITWEB_Mandatory5
 {
@@ -24,6 +25,9 @@ namespace ITWEB_Mandatory5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.AddAutoMapper();
 
