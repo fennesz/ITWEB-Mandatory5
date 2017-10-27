@@ -7,9 +7,9 @@ namespace ITWEB_Mandatory5.Models
     {
         public Category()
         {
-            ComponentTypes = new List<ComponentType>();
+            ComponentTypeCategory = new List<ComponentTypeCategory>();
         }
         public string Name { get; set; }
-        public ICollection<ComponentType> ComponentTypes { get; protected set; }
+        public ICollection<ComponentTypeCategory> ComponentTypeCategory { get; protected set; }
     }
 }

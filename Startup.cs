@@ -28,9 +28,9 @@ namespace ITWEB_Mandatory5
             services.AddAutoMapper();
 
             var Components = new Component[] {
-                new Component{ Id = 1, ComponentNumber = 1, SerialNo = "1", Status = ComponentStatus.Available, AdminComment = "a", UserComment = "a", ComponentTypeId = 1, CurrentLoanInformationId = 0},
-                new Component{ Id = 2, ComponentNumber = 10, SerialNo = "2", Status = ComponentStatus.Available, AdminComment = "b", UserComment = "b", ComponentTypeId = 2, CurrentLoanInformationId = 0},
-                new Component{ Id = 2, ComponentNumber = 100, SerialNo = "3", Status = ComponentStatus.Available, AdminComment = "c", UserComment = "c", ComponentTypeId = 3, CurrentLoanInformationId = 0},
+                new Component{ Id = 1, ComponentNumber = 1, SerialNo = "1", Status = ComponentStatus.Available, AdminComment = "a", UserComment = "a", ComponentTypeId = 1},
+                new Component{ Id = 2, ComponentNumber = 10, SerialNo = "2", Status = ComponentStatus.Available, AdminComment = "b", UserComment = "b", ComponentTypeId = 2},
+                new Component{ Id = 2, ComponentNumber = 100, SerialNo = "3", Status = ComponentStatus.Available, AdminComment = "c", UserComment = "c", ComponentTypeId = 30},
             };
 
             services.AddTransient<IRepository<Component>>(_ => new ListRepository<Component>(Components));

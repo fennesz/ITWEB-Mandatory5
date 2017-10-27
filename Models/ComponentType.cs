@@ -1,5 +1,4 @@
 using ITWEB_Mandatory5.DAL;
-using ITWEB_Mandatory5.Model;
 using ITWEB_Mandatory5.Models;
 using System.Collections.Generic;
 
@@ -22,7 +21,19 @@ namespace ITWEB_Mandatory5.Models
         public string WikiLink { get; set; }
         public string AdminComment { get; set; }
         public virtual ESImage Image { get; set; }
+        
+        // many-one
         public ICollection<Component> Components { get; protected set; }
-        public ICollection<Category> Categories { get; protected set; }
+        // many-many
+        public ICollection<ComponentTypeCategory> ComponentTypeCategories { get; protected set; }
+    }
+
+    // Many-Many intermediate class
+    public class ComponentTypeCategory
+    {
+        public long CategoryId;
+        public Category Category;
+        public long ComponentTypeId;
+        public ComponentType ComponentType;
     }
 }
