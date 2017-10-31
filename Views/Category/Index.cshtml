@@ -1,0 +1,10 @@
+﻿@model ITWEB_Mandatory5.ViewModels.CategoryController.CategoryIndexViewmodel
+
+@{
+    ViewData["Title"] = "Category list";
+}
+
+@foreach(var item in Model.Categories){
+    <label asp-for="@item.Name"></label>
+    <p>@item.Name</p>
+}

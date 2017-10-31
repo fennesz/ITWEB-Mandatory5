@@ -9,7 +9,7 @@ namespace ITWEB_Mandatory5.Models
         public ComponentType()
         {
             Components = new List<Component>();
-            ComponentTypeCategories = new List<ComponentTypeCategory>();
+            ComponentTypeCategory = new List<ComponentTypeCategory>();
         }
         public string ComponentName { get; set; }
         public string ComponentInfo { get; set; }
@@ -25,7 +25,7 @@ namespace ITWEB_Mandatory5.Models
         // many-one
         public ICollection<Component> Components { get; protected set; }
         // many-many
-        public ICollection<ComponentTypeCategory> ComponentTypeCategories { get; protected set; }
+        public ICollection<ComponentTypeCategory> ComponentTypeCategory { get; protected set; }
     }
 
     // Many-Many junction class

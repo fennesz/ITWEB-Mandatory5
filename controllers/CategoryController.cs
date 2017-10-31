@@ -19,6 +19,14 @@ namespace ITWEB_Mandatory5.Web
             _mapper = mapper;
         }
 
+        // GET: /ComponentCategory/test
+        public string Test()
+        {
+            var data = _repo.GetAll();
+            var VM = _mapper.Map<IEnumerable<Category>, CategoryIndexViewmodel>(data);
+            return "test";
+        }
+
         // GET: /ComponentCategory/
         public ViewResult Index()
         {
@@ -38,6 +46,22 @@ namespace ITWEB_Mandatory5.Web
 
             var VM = _mapper.Map<Category, CategoryDetailsViewmodel>(data);
             return View(VM);
+        }
+
+        // GET: /ComponentCategory/Create
+        public ViewResult Create()
+        {
+            var VM = new CategoryCreateViewmodel();
+            return View(VM);
+        }
+
+        // POST: /ComponentCategory/Create
+        [HttpPost]
+        public ViewResult Create(CategoryCreateViewmodel data)
+        {
+            var model = _mapper.Map<CategoryCreateViewmodel, Category>(data);
+            _repo.Insert(model);
+            return View(nameof(Details), model.Id);
         }
 
         // GET: /ComponentCategory/Edit/:id
@@ -60,6 +84,15 @@ namespace ITWEB_Mandatory5.Web
             var model = _mapper.Map<CategoryEditViewmodel, Category>(data);
             _repo.Update(model);
             return View(nameof(Details), id);
+        }
+
+        // POST: /ComponentCategory/Delete/:id
+        [HttpPost]
+        public ViewResult Delete(int id, CategoryDeleteViewmodel data)
+        {
+            var model = _mapper.Map<CategoryDeleteViewmodel, Category>(data);
+            _repo.Delete(model);
+            return View(nameof(Index));
         }
     }
 }

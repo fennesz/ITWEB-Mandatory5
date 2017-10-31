@@ -32,7 +32,7 @@ namespace ITWEB_Mandatory5
             services.AddAutoMapper();
             
             services.AddScoped<IRepository<Component>, Repository<Component>>();
-            services.AddScoped<IRepository<Category>, Repository<Category>>();
+            services.AddScoped<IRepository<Category>, CategoryRepository>();
             services.AddScoped<IRepository<ComponentType>, Repository<ComponentType>>();
             services.AddScoped<ITime, Time>();
         }

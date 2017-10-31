@@ -25,7 +25,7 @@ namespace ITWEB_Mandatory5.DAL
 
             modelBuilder.Entity<ComponentTypeCategory>()
                 .HasKey(cc => new { cc.ComponentTypeId, cc.CategoryId });
-
+            
             modelBuilder.Entity<ComponentTypeCategory>()
                 .HasOne(cc => cc.Category)
                 .WithMany(c => c.ComponentTypeCategory)
@@ -33,7 +33,7 @@ namespace ITWEB_Mandatory5.DAL
 
             modelBuilder.Entity<ComponentTypeCategory>()
                 .HasOne(cc => cc.ComponentType)
-                .WithMany(c => c.ComponentTypeCategories)
+                .WithMany(c => c.ComponentTypeCategory)
                 .HasForeignKey(cc => cc.ComponentTypeId);
 
             modelBuilder.Entity<ComponentType>()

@@ -8,6 +8,6 @@ namespace ITWEB_Mandatory5.ViewModels.CategoryController
 {
     public class CategoryIndexViewmodel
     {
-        IEnumerable<CategoryDetailsViewmodel> Categories { get; set; }
+        public IEnumerable<CategoryDetailsViewmodel> Categories { get; set; }
     }
 }
