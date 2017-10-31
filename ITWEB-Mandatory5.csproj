@@ -11,7 +11,4 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ITWEB-Mandatory5.Library\ITWEB-Mandatory5.Library.csproj" />
-  </ItemGroup>
 </Project>

@@ -27,6 +27,8 @@ namespace ITWEB_Mandatory5
                     var context = services.GetRequiredService<ApplicationContext>();
                     var compRepo = services.GetRequiredService<IRepository<Component>>();
                     DbInitializer.Initialize(context, compRepo);
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogInformation("HORSE!!!");
                 }
                 catch (Exception ex)
                 {
@@ -41,6 +43,12 @@ namespace ITWEB_Mandatory5
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
+                })
                 .UseStartup<Startup>()
                 .Build();
     }
