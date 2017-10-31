@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ITWEB_Mandatory5.Models;
+﻿using ITWEB_Mandatory5.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITWEB_Mandatory5.DAL
 {
@@ -16,10 +16,31 @@ namespace ITWEB_Mandatory5.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Category>().ToTable("Categories");
-            modelBuilder.Entity<Models.Component>().ToTable("Components");
+            modelBuilder.Entity<Component>().ToTable("Components");
             modelBuilder.Entity<ComponentType>().ToTable("ComponentTypes");
             modelBuilder.Entity<ESImage>().ToTable("ESImages");
+
+            modelBuilder.Entity<ComponentTypeCategory>()
+                .HasKey(cc => new { cc.ComponentTypeId, cc.CategoryId });
+
+            modelBuilder.Entity<ComponentTypeCategory>()
+                .HasOne(cc => cc.Category)
+                .WithMany(c => c.ComponentTypeCategory)
+                .HasForeignKey(cc => cc.CategoryId);
+
+            modelBuilder.Entity<ComponentTypeCategory>()
+                .HasOne(cc => cc.ComponentType)
+                .WithMany(c => c.ComponentTypeCategories)
+                .HasForeignKey(cc => cc.ComponentTypeId);
+
+            modelBuilder.Entity<ComponentType>()
+                .HasMany(c => c.Components)
+                .WithOne(e => e.ComponentType)
+                .HasForeignKey(k => k.ComponentTypeId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }
