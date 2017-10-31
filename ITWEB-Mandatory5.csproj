@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ITWEB-Mandatory5.Library\**" />
+    <Content Remove="ITWEB-Mandatory5.Library\**" />
+    <EmbeddedResource Remove="ITWEB-Mandatory5.Library\**" />
+    <None Remove="ITWEB-Mandatory5.Library\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
@@ -11,5 +17,8 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ITWEB-Mandatory5.Library\ITWEB-Mandatory5.Library.csproj" />
   </ItemGroup>
 </Project>

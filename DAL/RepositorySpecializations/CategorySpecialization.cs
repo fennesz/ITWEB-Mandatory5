@@ -36,7 +36,7 @@ namespace ITWEB_Mandatory5.DAL
                 .SingleOrDefault(s => s.Id == id);
         }
 
-        public Category Insert(Category entity)
+        public void Insert(Category entity)
         {
             if (entity == null)
             {
@@ -44,7 +44,6 @@ namespace ITWEB_Mandatory5.DAL
             }
             var insertedEntity = entities.Add(entity);
             context.SaveChanges();
-            return insertedEntity.Entity;
         }
 
         public void Update(Category entity)
@@ -77,6 +76,5 @@ namespace ITWEB_Mandatory5.DAL
                 .ThenInclude(x => x.ComponentType)
                 .Where(predicate);
         }
-
     }
 }
