@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using ITWEB_Mandatory5.DAL;
 using System.Diagnostics;
@@ -27,7 +28,9 @@ namespace ITWEB_Mandatory5.Web
         // GET: /
         public ViewResult Index()
         {
-            return View();
+            IEnumerable<Component> model=_componentRepo.GetAll();
+            Console.WriteLine(model);
+            return View(model);
         }
     }
 }

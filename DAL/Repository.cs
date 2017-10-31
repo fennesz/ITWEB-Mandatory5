@@ -3,18 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITWEB_Mandatory5.Library;
 
 namespace ITWEB_Mandatory5.DAL
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationContext context;
+        private readonly ITime _time;
         private DbSet<T> entities;
         string errorMessage = string.Empty;
 
-        public Repository(ApplicationContext context)
+        public Repository(ApplicationContext context, ITime time)
         {
             this.context = context;
+            _time = time;
             entities = context.Set<T>();
         }
         public IEnumerable<T> GetAll()
@@ -33,6 +36,7 @@ namespace ITWEB_Mandatory5.DAL
             {
                 throw new ArgumentNullException("entity");
             }
+            entity.AddedDate = _time.Get();
             entities.Add(entity);
             context.SaveChanges();
         }

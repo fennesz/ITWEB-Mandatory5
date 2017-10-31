@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ITWEB_Mandatory5.DAL;
+using ITWEB_Mandatory5.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,8 @@ namespace ITWEB_Mandatory5
                 try
                 {
                     var context = services.GetRequiredService<ApplicationContext>();
-                    DbInitializer.Initialize(context);
+                    var compRepo = services.GetRequiredService<Repository<Component>>();
+                    DbInitializer.Initialize(context, compRepo);
                 }
                 catch (Exception ex)
                 {

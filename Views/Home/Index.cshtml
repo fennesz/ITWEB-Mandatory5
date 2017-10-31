@@ -1,1 +1,30 @@
-Embedded stock
+@model IEnumerable<ITWEB_Mandatory5.Models.Component>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ComponentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserComment)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedDate)
+            </td>
+        </tr>
+    }
+</table>
