@@ -7,7 +7,7 @@ namespace ITWEB_Mandatory5.DAL
     public static class DbInitializer
     {
 
-        public static void Initialize(ApplicationContext context)
+        public static void Initialize(ApplicationContext context, IRepository<Component> compRepo)
         {
             context.Database.EnsureCreated();
 
@@ -17,9 +17,9 @@ namespace ITWEB_Mandatory5.DAL
                 return;   // DB has been seeded
             }
 
-            var components = new Models.Component[]
+            var components = new Component[]
             {
-            new Models.Component
+            new Component
             {
                 AdminComment = "This component shouldn't be given to students",
                 ComponentNumber = 1337,
@@ -27,22 +27,22 @@ namespace ITWEB_Mandatory5.DAL
                 Status = ComponentStatus.ReservedAdmin,
                 UserComment = "I loaned this, sincerely a student. LOL!"
             },
+                new Component
+                {
+                    AdminComment = "This is another lousy component",
+                    ComponentNumber = 42,
+                    SerialNo = "42-yo",
+                    Status = ComponentStatus.Defect,
+                    UserComment = "Shit didn't work... wtf?"
+                },
+
             };
 
-            foreach (Models.Component s in components)
+            foreach (Component s in components)
             {
-                context.Components.Add(s);
+                compRepo.Insert(s);
             }
-            context.SaveChanges();
-
-            //var categories = new Category[]
-            //{
-            //    new Category()
-            //    {
-            //        Name = "The best category"
-            //    }
-            //};
-            //context.SaveChanges();
+            
         }
     }
 }
