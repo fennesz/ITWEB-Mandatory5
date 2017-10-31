@@ -1,10 +1,40 @@
 ﻿@model ITWEB_Mandatory5.ViewModels.CategoryController.CategoryIndexViewmodel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Category list";
 }
 
-@foreach(var item in Model.Categories){
+@foreach (var item in Model.Categories)
+{
+
     <label asp-for="@item.Name"></label>
     <p>@item.Name</p>
+
+    <div>
+        <h2>COMPONENT TYPES</h2>
+        @foreach (var ComponentType in item.ComponentTypes)
+        {
+            <div>
+                <h3>COMPONENT TYPES</h3>
+                <label asp-for="@ComponentType.ComponentName"></label>
+                <p>@ComponentType.ComponentName</p>
+                <label asp-for="@ComponentType.ComponentInfo"></label>
+                <p>@ComponentType.ComponentInfo</p>
+                <label asp-for="@ComponentType.Datasheet"></label>
+                <p>@ComponentType.Datasheet</p>
+                <label asp-for="@ComponentType.Manufacturer"></label>
+                <p>@ComponentType.Manufacturer</p>
+                <label asp-for="@ComponentType.Location"></label>
+                <p>@ComponentType.Location</p>
+                <label asp-for="@ComponentType.Status"></label>
+                <p>@ComponentType.Status</p>
+                <label asp-for="@ComponentType.WikiLink"></label>
+                <p>@ComponentType.WikiLink</p>
+                <label asp-for="@ComponentType.AdminComment"></label>
+                <p>@ComponentType.AdminComment</p>
+            </div>
+        }
+    </div>
+
 }
