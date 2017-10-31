@@ -25,13 +25,14 @@ namespace ITWEB_Mandatory5
                 try
                 {
                     var context = services.GetRequiredService<ApplicationContext>();
-                    var compRepo = services.GetRequiredService<Repository<Component>>();
+                    var compRepo = services.GetRequiredService<IRepository<Component>>();
                     DbInitializer.Initialize(context, compRepo);
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while seeding the database.");
+                    throw ex;
                 }
             }
 

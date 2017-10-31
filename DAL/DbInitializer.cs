@@ -27,6 +27,15 @@ namespace ITWEB_Mandatory5.DAL
                 Status = ComponentStatus.ReservedAdmin,
                 UserComment = "I loaned this, sincerely a student. LOL!"
             },
+                new Component
+                {
+                    AdminComment = "This is another lousy component",
+                    ComponentNumber = 42,
+                    SerialNo = "42-yo",
+                    Status = ComponentStatus.Defect,
+                    UserComment = "Shit didn't work... wtf?"
+                },
+
             };
 
             foreach (Component s in components)

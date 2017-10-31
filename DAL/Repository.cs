@@ -47,6 +47,7 @@ namespace ITWEB_Mandatory5.DAL
             {
                 throw new ArgumentNullException("entity");
             }
+            entity.ModifiedDate = _time.Get();
             context.SaveChanges();
         }
 

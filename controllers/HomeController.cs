@@ -29,7 +29,9 @@ namespace ITWEB_Mandatory5.Web
         public ViewResult Index()
         {
             IEnumerable<Component> model=_componentRepo.GetAll();
-            Console.WriteLine(model);
+            var ent = model.First();
+            ent.UserComment = "Changed";
+            _componentRepo.Update(ent);
             return View(model);
         }
     }
