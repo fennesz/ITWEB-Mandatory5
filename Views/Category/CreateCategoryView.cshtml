@@ -1,0 +1,35 @@
+@model ITWEB_Mandatory5.ViewModels.CategoryController.CategoryCreateViewmodel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+
+<body>
+    <div class="container">
+
+        <form>
+            <div class="form-group">
+                <label for="categoryIdInput">Category Id:</label>
+                <input type="text" class="form-control" id="categoryIdInput" placeholder="Enter category Id">
+            </div>
+            <div class="form-group">
+                <label for="categoryNameInput">Category Name:</label>
+                <input type="text" class="form-control" id="categoryNameInput" placeholder="Enter category name">
+            </div>
+            <div class="form-group">
+                <label for="categoryComponentTypeSelect">Select a Component Type</label>
+                <select class="form-control" id="categoryComponentTypeSelect">
+                    @foreach(var ComponentType in Model.ComponentTypes){
+                        <option> @ComponentType.ComponentName </option>
+                    }
+                </select>
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
