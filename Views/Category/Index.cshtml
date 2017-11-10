@@ -1,40 +1,36 @@
-﻿@model ITWEB_Mandatory5.ViewModels.CategoryController.CategoryIndexViewmodel
+﻿@model IEnumerable<ITWEB_Mandatory5.ViewModels.CategoryVM>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Category list";
 }
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => "Component Type Count")
+            </th>
+            <th>
 
-@foreach (var item in Model.Categories)
-{
+            </th>
+        </tr>
 
-    <label asp-for="@item.Name"></label>
-    <p>@item.Name</p>
-
-    <div>
-        <h2>COMPONENT TYPES</h2>
-        @foreach (var ComponentType in item.ComponentTypes)
+        @foreach (var item in Model)
         {
-            <div>
-                <h3>COMPONENT TYPES</h3>
-                <label asp-for="@ComponentType.ComponentName"></label>
-                <p>@ComponentType.ComponentName</p>
-                <label asp-for="@ComponentType.ComponentInfo"></label>
-                <p>@ComponentType.ComponentInfo</p>
-                <label asp-for="@ComponentType.Datasheet"></label>
-                <p>@ComponentType.Datasheet</p>
-                <label asp-for="@ComponentType.Manufacturer"></label>
-                <p>@ComponentType.Manufacturer</p>
-                <label asp-for="@ComponentType.Location"></label>
-                <p>@ComponentType.Location</p>
-                <label asp-for="@ComponentType.Status"></label>
-                <p>@ComponentType.Status</p>
-                <label asp-for="@ComponentType.WikiLink"></label>
-                <p>@ComponentType.WikiLink</p>
-                <label asp-for="@ComponentType.AdminComment"></label>
-                <p>@ComponentType.AdminComment</p>
-                <a asp-controller="Category" asp-action="Details">Details</a>
-            </div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentTypes.Count())
+                </td>
+                <td>
+                    <button type="button" asp-controller="Component" asp-action="edit" class="btn btn-default">Edit</button>
+                </td>
+            </tr>
         }
-    </div>
-}
+    </table>
+</div>

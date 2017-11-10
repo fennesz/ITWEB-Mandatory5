@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Create Component";
+    ViewData["typelist"] = new string[] { "mode", "type" };
 }
 
 
@@ -20,12 +21,12 @@
             </div>
             <div class="form-group">
                 <label for="inputComponentNumber">Component Number</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" value="Model.ComponentNumber"
                        id="inputComponentNumber" placeholder="Enter component number" />
             </div>
             <div class="form-group">
                 <label for="inputComponentSerialNo">Component SerialNo</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" value="Model.ComponentSerialNo"
                        id="inputComponentSerialNo" placeholder="Enter component SerialNo" />
             </div>
             <div class="form-group">
@@ -39,15 +40,16 @@
             </div>
             <div class="form-group">
                 <label for="inputComponentAdminComment">Component Admin Comment</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" value="Model.AdminComment"
                        id="inputComponentAdminComment" placeholder="Enter admin comment" />
             </div>
             <div class="form-group">
                 <label for="inputComponentUserComment">Component User Comment</label>
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" value="Model.UserComment"
                        id="inputComponentUserComment" placeholder="Enter user comment" />
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+        <button type="button" asp-controller="Component" asp-action="delete" class="btn btn-default">Delete</button>
     </div>
 </body>

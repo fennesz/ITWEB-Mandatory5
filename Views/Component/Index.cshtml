@@ -1,30 +1,61 @@
-﻿@model ITWEB_Mandatory5.ViewModels.
+﻿@model IEnumerable<ITWEB_Mandatory5.ViewModels.ComponentVM>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Component list";
 }
 
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminComment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserComment)
+            </th>
+            <th>
 
-@foreach (var Component in item.Components)
-{
-    <div>
-        <h3>COMPONENT TYPES</h3>
-        <label asp-for="@Component.ComponentType"></label>
-        <p>@Component.ComponentType</p>
-        <label asp-for="@Component.ComponentNumber"></label>
-        <p>@Component.ComponentNumber</p>
-        <label asp-for="@Component.SerialNo"></label>
-        <p>@Component.SerialNo</p>
-        <label asp-for="@Component.Status"></label>
-        <p>@Component.Status</p>
-        <label asp-for="@Component.AdminComment"></label>
-        <p>@Component.AdminComment</p>
-        <label asp-for="@Component.UserComment"></label>
-        <p>@Component.UserComment</p>
-        <a asp-controller="Category" asp-action="Details">Details</a>
-    </div>
-}
+            </th>
+        </tr>
 
-
- 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserComment)
+                </td>
+                <td>
+                    <button type="button" asp-controller="Component" asp-action="edit" class="btn btn-default">Edit</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

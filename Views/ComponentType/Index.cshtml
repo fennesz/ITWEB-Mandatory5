@@ -1,34 +1,79 @@
-﻿@model ITWEB_Mandatory5.ViewModels.
+﻿@model IEnumerable<ITWEB_Mandatory5.ViewModels.ComponentTypeVM>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Component type list";
 }
 
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datasheet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WikiLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminComment)
+            </th>
+            <th>
 
-@foreach (var ComponentType in item.ComponentTypes)
-{
-    <div>
-        <h3>COMPONENT TYPES</h3>
-        <label asp-for="@ComponentType.ComponentName"></label>
-        <p>@ComponentType.ComponentName</p>
-        <label asp-for="@ComponentType.ComponentInfo"></label>
-        <p>@ComponentType.ComponentInfo</p>
-        <label asp-for="@ComponentType.Datasheet"></label>
-        <p>@ComponentType.Datasheet</p>
-        <label asp-for="@ComponentType.Manufacturer"></label>
-        <p>@ComponentType.Manufacturer</p>
-        <label asp-for="@ComponentType.Location"></label>
-        <p>@ComponentType.Location</p>
-        <label asp-for="@ComponentType.Status"></label>
-        <p>@ComponentType.Status</p>
-        <label asp-for="@ComponentType.WikiLink"></label>
-        <p>@ComponentType.WikiLink</p>
-        <label asp-for="@ComponentType.AdminComment"></label>
-        <p>@ComponentType.AdminComment</p>
-        <a asp-controller="Category" asp-action="Details">Details</a>
-    </div>
-}
+            </th>
+        </tr>
 
-
- 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datasheet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WikiLink)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminComment)
+                </td>
+                <td>
+                    <button type="button" asp-controller="Component" asp-action="edit" class="btn btn-default">Edit</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
