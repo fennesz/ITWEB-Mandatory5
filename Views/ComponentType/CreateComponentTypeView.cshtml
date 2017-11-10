@@ -1,0 +1,53 @@
+@model ITWEB_Mandatory5.ViewModels.
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+
+<body>
+<div class="container">
+        <form role="form">
+            <div class="form-group">
+                <label for="inputComponentTypeList">Component Type</label>
+                <select class="form-control" id="inputComponentTypeList">
+                    @foreach (var ComponentTypeList in Model.ComponentTypes)
+                    {
+                        <option> @ComponentTypeList.ComponentStatus </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputComponentNumber">Component Number</label>
+                <input type="text" class="form-control"
+                       id="inputComponentNumber" placeholder="Enter component number" />
+            </div>
+            <div class="form-group">
+                <label for="inputComponentSerialNo">Component SerialNo</label>
+                <input type="text" class="form-control"
+                       id="inputComponentSerialNo" placeholder="Enter component SerialNo" />
+            </div>
+            <div class="form-group">
+                <label for="inputComponentStatusList">Component Status</label>
+                <select class="form-control" id="inputComponentStatusList">
+                    @foreach (var ComponentStatusList in Model.ComponentStatusList)
+                    {
+                        <option> @ComponentStatusList.ComponentStatus </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputComponentAdminComment">Component Admin Comment</label>
+                <input type="text" class="form-control"
+                       id="inputComponentAdminComment" placeholder="Enter admin comment" />
+            </div>
+            <div class="form-group">
+                <label for="inputComponentUserComment">Component User Comment</label>
+                <input type="text" class="form-control"
+                       id="inputComponentUserComment" placeholder="Enter user comment" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</body>
