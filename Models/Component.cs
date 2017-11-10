@@ -16,6 +16,6 @@ namespace ITWEB_Mandatory5.Models
         public ComponentStatus Status { get; set; }
         public string AdminComment { get; set; }
         public string UserComment { get; set; }
-        //public long? CurrentLoanInformationId { get; set; }
-    }
+    }
+
 }

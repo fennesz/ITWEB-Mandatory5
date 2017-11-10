@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using ITWEB_Mandatory5.ViewModels.CategoryController;
 using System.Collections.Generic;
+using ITWEB_Mandatory5.ViewModels;
 
 namespace ITWEB_Mandatory5.Web
 {
@@ -19,19 +20,11 @@ namespace ITWEB_Mandatory5.Web
             _mapper = mapper;
         }
 
-        // GET: /ComponentCategory/test
-        public string Test()
-        {
-            var data = _repo.GetAll();
-            var VM = _mapper.Map<IEnumerable<Category>, CategoryIndexViewmodel>(data);
-            return "test";
-        }
-
         // GET: /ComponentCategory/
         public ViewResult Index()
         {
             var data = _repo.GetAll();
-            var VM = _mapper.Map<IEnumerable<Category>, CategoryIndexViewmodel>(data);
+            var VM = _mapper.Map<IEnumerable<Category>, List<CategoryVM>>(data);
             return View(VM);
         }
 
