@@ -20,7 +20,7 @@ namespace ITWEB_Mandatory5.Web
             _mapper = mapper;
         }
 
-        // GET: /ComponentCategory/
+        // GET: /Category/
         public ViewResult Index()
         {
             var data = _repo.GetAll();
@@ -28,7 +28,7 @@ namespace ITWEB_Mandatory5.Web
             return View(VM);
         }
 
-        // GET: /ComponentCategory/Details/:id
+        // GET: /Category/Details/:id
         public ViewResult Details(int id)
         {
             var data = _repo.Get(id);
@@ -37,27 +37,27 @@ namespace ITWEB_Mandatory5.Web
                 return PageNotFound();
             }
 
-            var VM = _mapper.Map<Category, CategoryDetailsViewmodel>(data);
+            var VM = _mapper.Map<Category, CategoryVM>(data);
             return View(VM);
         }
 
-        // GET: /ComponentCategory/Create
+        // GET: /Category/Create
         public ViewResult Create()
         {
-            var VM = new CategoryCreateViewmodel();
+            var VM = new CategoryVM();
             return View(VM);
         }
 
-        // POST: /ComponentCategory/Create
+        // POST: /Category/Create
         [HttpPost]
-        public ViewResult Create(CategoryCreateViewmodel data)
+        public ViewResult Create(CategoryVM data)
         {
-            var model = _mapper.Map<CategoryCreateViewmodel, Category>(data);
+            var model = _mapper.Map<CategoryVM, Category>(data);
             _repo.Insert(model);
             return View(nameof(Details), model.Id);
         }
 
-        // GET: /ComponentCategory/Edit/:id
+        // GET: /Category/Edit/:id
         public ViewResult Edit(int id)
         {
             var data = _repo.Get(id);
@@ -66,24 +66,29 @@ namespace ITWEB_Mandatory5.Web
                 return PageNotFound();
             }
 
-            var VM = _mapper.Map<Category, CategoryDetailsViewmodel>(data);
+            var VM = _mapper.Map<Category, CategoryVM>(data);
             return View(VM);
         }
 
-        // POST: /ComponentCategory/Edit/:id
+        // POST: /Category/Edit/:id
         [HttpPost]
-        public ViewResult Edit(int id, CategoryEditViewmodel data)
+        public ViewResult Edit(int id, CategoryVM data)
         {
-            var model = _mapper.Map<CategoryEditViewmodel, Category>(data);
+            // Nasty hack because we are dependent on the Entity framework proxy classes in the 
+            // Repository.
+            var model = _repo.Get(id);
+            var dataMapped = _mapper.Map<CategoryVM, Category>(data);
+            model.Name = dataMapped.Name;
+
             _repo.Update(model);
             return View(nameof(Details), id);
         }
 
-        // POST: /ComponentCategory/Delete/:id
+        // POST: /Category/Delete/:id
         [HttpPost]
-        public ViewResult Delete(int id, CategoryDeleteViewmodel data)
+        public ViewResult Delete(int id, CategoryVM data)
         {
-            var model = _mapper.Map<CategoryDeleteViewmodel, Category>(data);
+            var model = _mapper.Map<CategoryVM, Category>(data);
             _repo.Delete(model);
             return View(nameof(Index));
         }

@@ -42,7 +42,7 @@ namespace ITWEB_Mandatory5.DAL
                     )
                 );
 
-            CreateMap<Component, ComponentVM>();
+            CreateMap<Component, ComponentVM>().ReverseMap();
 
             CreateMap<ComponentType, ComponentTypeVM>()
                 .ForMember(dest => dest.Categories, opts => opts.MapFrom(

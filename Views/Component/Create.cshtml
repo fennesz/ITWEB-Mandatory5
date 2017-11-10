@@ -1,0 +1,12 @@
+﻿@model ITWEB_Mandatory5.ViewModels.ComponentVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create Component";
+    var SelectList = ViewBag.ComponentTypeList as IEnumerable<SelectListItem>;
+}
+
+@Html.ListBoxFor(Model => Model.ComponentType, SelectList)
+ 
+
+<div></div>
