@@ -2,9 +2,10 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = "Component list";
+    ViewData["Title"] = "Component list for component type: " + ViewBag.ComponentTypeName;
 }
 
+<h1>@ViewData["Title"]</h1>
 <div class="container">
     <table class="table">
         <tr>

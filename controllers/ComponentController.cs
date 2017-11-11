@@ -2,12 +2,11 @@ using AutoMapper;
 using ITWEB_Mandatory5.DAL;
 using ITWEB_Mandatory5.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
-using ITWEB_Mandatory5.ViewModels.CategoryController;
 using System.Collections.Generic;
 using ITWEB_Mandatory5.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System;
 
 namespace ITWEB_Mandatory5.Web
 {
@@ -32,46 +31,29 @@ namespace ITWEB_Mandatory5.Web
             return View(VM);
         }
 
-        // GET: /Component/Details/:id
-        public ViewResult Details(int id)
-        {
-            var data = _componentRepo.Get(id);
-            if(data == null)
-            {
-                return PageNotFound();
-            }
-
-            var VM = _mapper.Map<Component, ComponentVM>(data);
-            return View(VM);
-        }
-
         // GET: /Component/Create
         public ViewResult Create()
         {
-            List<ComponentType> componentTypes = _componentTypeRepo.GetAll().ToList();
-            List<SelectListItem> ComponentTypeSelectListItems = new List<SelectListItem>();
-            foreach(var componentType in componentTypes)
-            {
-                ComponentTypeSelectListItems.Add(new SelectListItem() {Text = componentType.ComponentName, Value = componentType.Id.ToString() });
-            }
-            
-            ViewBag.ComponentTypeList = ComponentTypeSelectListItems;
+            ViewBag.ComponentTypeList = ComponentTypesSelectList();
+            ViewBag.ComponentStatusList = ComponentStatusEnumSelectList();
             var VM = new ComponentVM();
             return View(VM);
         }
 
         // POST: /Component/Create
         [HttpPost]
-        public ViewResult Create(ComponentVM data)
+        public ActionResult Create(ComponentVM data)
         {
             var model = _mapper.Map<ComponentVM, Component>(data);
             _componentRepo.Insert(model);
-            return View(nameof(Details), model.Id);
+            return RedirectToAction(nameof(Index), "Component");
         }
 
         // GET: /Component/Edit/:id
         public ViewResult Edit(int id)
         {
+            ViewBag.ComponentTypeList = ComponentTypesSelectList();
+            ViewBag.ComponentStatusList = ComponentStatusEnumSelectList();
             var data = _componentRepo.Get(id);
             if (data == null)
             {
@@ -84,7 +66,7 @@ namespace ITWEB_Mandatory5.Web
 
         // POST: /Component/Edit/:id
         [HttpPost]
-        public ViewResult Edit(int id, ComponentVM data)
+        public ActionResult Edit(int id, ComponentVM data)
         {
             // Nasty hack because we are dependent on the Entity framework proxy classes in the 
             // Repository.
@@ -99,16 +81,47 @@ namespace ITWEB_Mandatory5.Web
             model.UserComment = dataMapped.UserComment;
 
             _componentRepo.Update(model);
-            return View(nameof(Details), id);
+            return RedirectToAction(nameof(Index), "Component");
         }
 
         // POST: /Component/Delete/:id
-        [HttpPost]
-        public ViewResult Delete(int id, ComponentVM data)
+        public ActionResult Delete(int id)
         {
-            var model = _mapper.Map<ComponentVM, Component>(data);
-            _componentRepo.Delete(model);
-            return View(nameof(Index));
+            _componentRepo.Delete(_componentRepo.Get(id));
+            return RedirectToAction(nameof(Index), "Component");
+        }
+
+        // GET: /Component/ComponentType/:id
+        public ActionResult ComponentType(int id)
+        {
+            var componentType = _componentTypeRepo.Find(ct => ct.Id == id).First();
+            var data = _componentRepo.Find((c) => c.ComponentType.Id == id);
+            var VM = _mapper.Map<IEnumerable<Component>, List<ComponentVM>>(data);
+            ViewBag.ComponentTypeName = componentType.ComponentName;
+            return View(VM);
+        }
+
+        List<SelectListItem> ComponentStatusEnumSelectList()
+        {
+            var itemsOfList = new List<SelectListItem>();
+            var EnumStrings = Enum.GetNames(typeof(ComponentStatus));
+            foreach (var enumString in EnumStrings)
+            {
+                itemsOfList.Add(new SelectListItem() { Text = enumString, Value = enumString });
+            }
+
+            return itemsOfList;
+        }
+
+        List<SelectListItem> ComponentTypesSelectList()
+        {
+            List<ComponentType> componentTypes = _componentTypeRepo.GetAll().ToList();
+            List<SelectListItem> ComponentTypeSelectListItems = new List<SelectListItem>();
+            foreach (var componentType in componentTypes)
+            {
+                ComponentTypeSelectListItems.Add(new SelectListItem() { Text = componentType.ComponentName, Value = componentType.Id.ToString() });
+            }
+            return ComponentTypeSelectListItems;
         }
     }
 }

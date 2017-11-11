@@ -10,6 +10,7 @@ namespace ITWEB_Mandatory5.ViewModels
     {
         public Int64 Id { get; set; }
 
+        public Int64 ComponentTypeId { get; set; }
         public ComponentTypeVM ComponentType { get; set; }
 
         public int ComponentNumber { get; set; }

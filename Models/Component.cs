@@ -8,7 +8,7 @@ namespace ITWEB_Mandatory5.Models
 {
     public class Component : BaseEntity
     {
-        public long? ComponentTypeId { get; set; }
+        public Int64? ComponentTypeId { get; set; }
         public ComponentType ComponentType { get; set; }
 
         public int ComponentNumber { get; set; }

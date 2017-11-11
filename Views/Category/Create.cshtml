@@ -5,14 +5,14 @@
     ViewData["Title"] = "Create Category";
 }
 
+
 <body>
     <div class="container">
-        <form asp-controller="Category" asp-action="Create" method="post">
+        <form>
             <div class="form-group">
-                <label asp-for="@Model.Name"></label>
-                <input asp-for="@Model.Name">
+                <label for="categoryNameInput">Category Name:</label>
+                <input type="text" class="form-control" id="categoryNameInput" placeholder="Enter category name">
             </div>
-            <button type="submit">Create category</button>
         </form>
     </div>
 </body>

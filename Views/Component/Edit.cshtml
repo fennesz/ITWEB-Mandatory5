@@ -3,13 +3,11 @@
 
 @{
     ViewData["Title"] = "Create Component";
-
 }
-
 
 <body>
     <div class="container">
-        <form asp-controller="Component" asp-action="Create" method="post">
+        <form asp-controller="Component" asp-action="Edit" method="post">
             <div class="form-group">
                 <label asp-for="ComponentTypeId"></label>
                 <select asp-for="ComponentTypeId" asp-items="@ViewBag.ComponentTypeList"></select>
