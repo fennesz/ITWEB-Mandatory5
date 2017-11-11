@@ -55,7 +55,7 @@ namespace ITWEB_Mandatory5
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Category}/{action=Index}/{id?}");
             });
         }
     }
